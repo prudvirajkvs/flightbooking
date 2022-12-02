@@ -1,4 +1,4 @@
-import rawdata from './data.json';
+import rawdata from '../data.json';
 import {Response,Request} from 'express';
 const prefetch = (req:Request, res:Response) => {
   
@@ -14,4 +14,4 @@ const prefetch = (req:Request, res:Response) => {
   res.status(200).send({sources_set,destinations_set});
 };
 
-module.exports = prefetch;
+export default prefetch;

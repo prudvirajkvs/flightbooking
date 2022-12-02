@@ -1,19 +1,27 @@
 // const express = require('express');
 import express,{Request,Response} from 'express'
-const SearchOps = require('./SearchOps');
-const Prefetch = require('./Prefetch');
-const BookingConfirm = require('./BookingConfirm');
+import FlightSearchController from './controllers/FlightSearchController'
+import Prefetch from './services/Prefetch'
+import FlightBookingConfirmController from './controllers/FlightBookingConfirmController'
+
 require('dotenv').config();
 const app = express();
 app.use(express.json());
+app.use(function(req, res, next){
+    res.setTimeout(3000, function(){
+        console.log('Request has timed out.');
+            res.sendStatus(408);
+        });
 
+    next();
+});
 const port = process.env.PORT || 3001;
 
-app.use('/search', SearchOps);
-app.use('/bookingConfirm', BookingConfirm);
+app.use('/booking', FlightBookingConfirmController);
+app.use('/search', FlightSearchController);
 app.get('/prefetch', Prefetch);
 app.get('/', (req:Request, res:Response) => {
-  res.status(200).send('welcome to the flight booking app ');
+  // res.status(200).send('welcome to the flight booking app ');
 });
 
 app.listen(port, () => {

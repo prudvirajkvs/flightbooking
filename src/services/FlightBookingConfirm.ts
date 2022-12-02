@@ -1,5 +1,4 @@
 import express,{Request,Response} from 'express';
-import FlightData from '../data.json'
 const router = express.Router();
 
 const generateTickedID=(length:Number)=>{

@@ -1,5 +1,6 @@
 import {Response,Request} from 'express'
-import FlightData from '../data.json'
+// import FlightData from '../data.json'
+import FlightData from './../dataConnector/FlightData'
 
 const findByFlightId = (req:Request, res:Response) => {
   const { id } = req.body;

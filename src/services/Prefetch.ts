@@ -1,10 +1,10 @@
-import rawdata from '../data.json';
+import FlightData from '../dataConnector/FlightData';
 import {Response,Request} from 'express';
 const prefetch = (req:Request, res:Response) => {
   
   let sources:string[] = [],
     destinations:String[] = [];
-  rawdata.forEach((flight) => {
+  FlightData.forEach((flight:any) => {
     sources.push(flight.depatureDestination);
     destinations.push(flight.arrivalDestination);
   });

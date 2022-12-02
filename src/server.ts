@@ -7,6 +7,12 @@ import FlightBookingConfirmController from './controllers/FlightBookingConfirmCo
 require('dotenv').config();
 const app = express();
 app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader('Access-control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-control-Allow-Headers', '*');
+  //   console.log('its calling btw');
+  next();
+});
 app.use(function(req, res, next){
     res.setTimeout(3000, function(){
         console.log('Request has timed out.');

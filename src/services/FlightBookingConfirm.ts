@@ -15,7 +15,14 @@ const confirmBooking = (req: Request, res: Response) => {
   const { personalData, flight, ticketData } = req.body;
   let tkts = ticketData.map((tkt: any) => {
     let id = generateTickedID(10);
-    return { ...tkt, ticketId: id, status: 'confirmed' };
+    return {
+      ...tkt,
+      from: flight.depatureDestination,
+      to: flight.arrivalDestination,
+      ticketId: id,
+      tktBookedBy: personalData,
+      status: 'confirmed',
+    };
   });
   res.status(200).send(tkts);
 };
